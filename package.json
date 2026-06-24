@@ -1,0 +1,23 @@
+﻿{
+  "name": "maxy-messenger",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Firebase messenger with chat, voice messages, calls, desktop launcher and website",
+  "scripts": {
+    "start": "node desktop_server.js",
+    "hosting:deploy": "firebase deploy --only hosting",
+    "hosting:serve": "firebase emulators:start --only hosting",
+    "ios:prepare": "npx cap sync ios",
+    "ios:open": "npx cap open ios",
+    "android:prepare": "npx cap sync android",
+    "android:open": "npx cap open android"
+  },
+  "dependencies": {
+    "@capacitor/core": "^6.1.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.1.2",
+    "@capacitor/ios": "^6.1.2",
+    "@capacitor/android": "^6.1.2"
+  }
+}
