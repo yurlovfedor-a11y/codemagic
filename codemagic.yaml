@@ -16,7 +16,9 @@
       - name: Install dependencies
         script: |
           npm install --include=dev
+          npm install @capacitor/core@^6.1.2 @capacitor/cli@^6.1.2 @capacitor/android@^6.1.2 --save-dev
           test -f node_modules/@capacitor/cli/package.json
+          test -f node_modules/@capacitor/android/package.json
       - name: Ensure Capacitor Android project exists
         script: |
           ./node_modules/.bin/cap add android || true
@@ -54,7 +56,9 @@
       - name: Install dependencies
         script: |
           npm install --include=dev
+          npm install @capacitor/core@^6.1.2 @capacitor/cli@^6.1.2 @capacitor/android@^6.1.2 --save-dev
           test -f node_modules/@capacitor/cli/package.json
+          test -f node_modules/@capacitor/android/package.json
       - name: Ensure Capacitor Android project exists
         script: |
           ./node_modules/.bin/cap add android || true
