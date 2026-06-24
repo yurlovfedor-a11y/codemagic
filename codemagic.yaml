@@ -1,0 +1,75 @@
+﻿workflows:
+  android-apk:
+    name: MaxyMessenger Android APK
+    max_build_duration: 120
+    instance_type: linux_x2
+    environment:
+      vars:
+        PACKAGE_NAME: "com.maxymessenger.app"
+      node: 20
+      java: 17
+    cache:
+      cache_paths:
+        - ~/.npm
+        - ~/.gradle/caches
+        - ~/.gradle/wrapper
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm install
+      - name: Ensure Capacitor Android project exists
+        script: |
+          npx cap add android || true
+          npx cap sync android
+      - name: Set Android application id
+        script: |
+          BUILD_FILE="android/app/build.gradle"
+          if [ -f "$BUILD_FILE" ]; then
+            sed -i.bak "s/applicationId \".*\"/applicationId \"$PACKAGE_NAME\"/" "$BUILD_FILE"
+          fi
+      - name: Build debug APK
+        script: |
+          cd android
+          ./gradlew assembleDebug
+    artifacts:
+      - android/app/build/outputs/**/*.apk
+      - android/app/build/outputs/**/mapping.txt
+
+  android-release-aab:
+    name: MaxyMessenger Android Release AAB
+    max_build_duration: 120
+    instance_type: linux_x2
+    environment:
+      android_signing:
+        - maxymessenger_keystore
+      vars:
+        PACKAGE_NAME: "com.maxymessenger.app"
+      node: 20
+      java: 17
+    cache:
+      cache_paths:
+        - ~/.npm
+        - ~/.gradle/caches
+        - ~/.gradle/wrapper
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm install
+      - name: Ensure Capacitor Android project exists
+        script: |
+          npx cap add android || true
+          npx cap sync android
+      - name: Set Android application id
+        script: |
+          BUILD_FILE="android/app/build.gradle"
+          if [ -f "$BUILD_FILE" ]; then
+            sed -i.bak "s/applicationId \".*\"/applicationId \"$PACKAGE_NAME\"/" "$BUILD_FILE"
+          fi
+      - name: Apply Android signing
+        script: |
+          cd android
+          echo "$CM_KEYSTORE_PATH"
+          ./gradlew bundleRelease
+    artifacts:
+      - android/app/build/outputs/**/*.aab
+      - android/app/build/outputs/**/*.apk
