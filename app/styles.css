@@ -19,6 +19,9 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; min-height: 100%; font-family: "Inter", sans-serif; background: var(--bg); color: var(--text); }
 body { min-height: 100vh; }
+body[data-shell-mode="app"] {
+  background: var(--panel-3);
+}
 button, input, textarea { font: inherit; }
 button { border: 0; cursor: pointer; }
 input, textarea {
@@ -79,6 +82,12 @@ textarea { resize: none; min-height: 56px; max-height: 180px; }
 }
 .wide-btn { width: 100%; }
 .top-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+body[data-shell-mode="app"] #backToSiteBtn,
+body[data-shell-mode="app"] #backToSiteFromAppBtn,
+body[data-shell-mode="app"] #openMessengerBtn,
+body[data-shell-mode="app"] #heroOpenMessengerBtn {
+  display: none !important;
+}
 
 .landing-screen {
   min-height: 100vh;
@@ -184,6 +193,10 @@ textarea { resize: none; min-height: 56px; max-height: 180px; }
   padding: 24px;
   background: linear-gradient(180deg, #101923 0%, #0e1621 100%);
 }
+body[data-shell-mode="app"] .auth-screen {
+  padding: 0;
+  background: linear-gradient(180deg, #0d151d 0%, #0b1219 100%);
+}
 .auth-card {
   width: min(100%, 460px);
   background: rgba(23, 33, 43, 0.96);
@@ -191,6 +204,15 @@ textarea { resize: none; min-height: 56px; max-height: 180px; }
   border-radius: 28px;
   padding: 28px;
   box-shadow: var(--shadow);
+}
+body[data-shell-mode="app"] .auth-card {
+  width: min(100%, 100vw);
+  min-height: 100vh;
+  min-height: 100dvh;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  padding: 28px 20px calc(28px + env(safe-area-inset-bottom));
 }
 .auth-brand { display: flex; gap: 18px; align-items: center; margin-bottom: 24px; }
 .auth-card h1, .chat-header h2 { margin: 0; }
@@ -202,6 +224,10 @@ textarea { resize: none; min-height: 56px; max-height: 180px; }
 .app-screen {
   display: grid;
   grid-template-columns: 360px 1fr;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+body[data-shell-mode="app"] .app-screen {
   min-height: 100vh;
   min-height: 100dvh;
 }
@@ -290,6 +316,13 @@ textarea { resize: none; min-height: 56px; max-height: 180px; }
   background: rgba(23, 33, 43, 0.92);
   position: sticky;
   bottom: 0;
+}
+body[data-shell-mode="app"] .sidebar-header,
+body[data-shell-mode="app"] .chat-header {
+  padding-top: calc(16px + env(safe-area-inset-top));
+}
+body[data-shell-mode="app"] .composer {
+  padding-bottom: calc(16px + env(safe-area-inset-bottom));
 }
 .composer-box { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: end; }
 .composer-actions { display: flex; gap: 10px; }
@@ -484,6 +517,10 @@ textarea { resize: none; min-height: 56px; max-height: 180px; }
   .auth-card {
     padding: 18px;
     border-radius: 20px;
+  }
+  body[data-shell-mode="app"] .auth-card {
+    border-radius: 0;
+    padding: calc(18px + env(safe-area-inset-top)) 16px calc(18px + env(safe-area-inset-bottom));
   }
   .auth-brand {
     gap: 12px;

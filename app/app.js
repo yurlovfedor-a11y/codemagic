@@ -31,6 +31,7 @@ const rtcConfig = {
 };
 
 const state = {
+  shellMode: detectShellMode(),
   authMode: "login",
   firebaseReady: false,
   auth: null,
@@ -139,7 +140,7 @@ function bindEvents() {
 
 async function bootstrap() {
   setAuthMode("login");
-  showLandingScreen();
+  applyShellMode();
 
   if (!hasRequiredFirebaseConfig()) {
     showSetupBanner([
@@ -184,6 +185,10 @@ function openMessengerEntry() {
 }
 
 function showLandingScreen() {
+  if (state.shellMode !== "web") {
+    showAuthScreen();
+    return;
+  }
   els.landingScreen.classList.remove("hidden");
   els.authScreen.classList.add("hidden");
   els.appScreen.classList.add("hidden");
@@ -202,6 +207,19 @@ function showAppScreen(user) {
   els.userAvatar.textContent = initials(displayNameOf(user));
   els.userNameLabel.textContent = displayNameOf(user);
   els.userEmailLabel.textContent = user.email || "";
+}
+
+function applyShellMode() {
+  document.body.dataset.shellMode = state.shellMode;
+
+  if (state.shellMode === "web") {
+    showLandingScreen();
+    return;
+  }
+
+  els.landingScreen.classList.add("hidden");
+  els.authScreen.classList.remove("hidden");
+  els.appScreen.classList.add("hidden");
 }
 
 function setAuthMode(mode) {
@@ -875,6 +893,17 @@ function mapFirebaseError(error) {
   }
   if (code.includes("network-request-failed")) return "Ошибка сети при подключении к Firebase.";
   return error?.message || "Неизвестная ошибка Firebase.";
+}
+
+function detectShellMode() {
+  const isCapacitor = Boolean(window.Capacitor);
+  const isStandalone = window.matchMedia?.("(display-mode: standalone)")?.matches || window.navigator.standalone === true;
+
+  if (isCapacitor || isStandalone) {
+    return "app";
+  }
+
+  return "web";
 }
 
 if ("serviceWorker" in navigator) {
