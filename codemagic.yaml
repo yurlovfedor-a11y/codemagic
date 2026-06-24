@@ -2,7 +2,6 @@
   android-apk:
     name: MaxyMessenger Android APK
     max_build_duration: 120
-    instance_type: linux_x2
     environment:
       vars:
         PACKAGE_NAME: "com.maxymessenger.app"
@@ -38,7 +37,6 @@
   android-release-aab:
     name: MaxyMessenger Android Release AAB
     max_build_duration: 120
-    instance_type: linux_x2
     environment:
       android_signing:
         - maxymessenger_keystore
@@ -68,7 +66,6 @@
       - name: Apply Android signing
         script: |
           cd android
-          echo "$CM_KEYSTORE_PATH"
           ./gradlew bundleRelease
     artifacts:
       - android/app/build/outputs/**/*.aab
