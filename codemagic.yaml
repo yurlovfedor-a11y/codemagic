@@ -15,11 +15,12 @@
     scripts:
       - name: Install dependencies
         script: |
-          npm install
+          npm install --include=dev
+          test -f node_modules/@capacitor/cli/package.json
       - name: Ensure Capacitor Android project exists
         script: |
-          npx cap add android || true
-          npx cap sync android
+          ./node_modules/.bin/cap add android || true
+          ./node_modules/.bin/cap sync android
       - name: Set Android application id
         script: |
           BUILD_FILE="android/app/build.gradle"
@@ -52,11 +53,12 @@
     scripts:
       - name: Install dependencies
         script: |
-          npm install
+          npm install --include=dev
+          test -f node_modules/@capacitor/cli/package.json
       - name: Ensure Capacitor Android project exists
         script: |
-          npx cap add android || true
-          npx cap sync android
+          ./node_modules/.bin/cap add android || true
+          ./node_modules/.bin/cap sync android
       - name: Set Android application id
         script: |
           BUILD_FILE="android/app/build.gradle"
