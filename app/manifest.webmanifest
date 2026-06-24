@@ -1,0 +1,16 @@
+﻿{
+  "name": "MaxyMessenger",
+  "short_name": "Maxy",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0e1621",
+  "theme_color": "#0e1621",
+  "description": "Мессенджер с чатами, голосовыми сообщениями и звонками на Firebase.",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

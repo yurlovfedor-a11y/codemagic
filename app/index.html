@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>MaxyMessenger</title>
+  <meta name="description" content="MaxyMessenger: мессенджер с чатами, голосовыми сообщениями и звонками на Firebase." />
+  <meta name="theme-color" content="#0e1621" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="MaxyMessenger" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="setupBanner" class="setup-banner hidden"></div>
+
+  <section id="landingScreen" class="landing-screen">
+    <header class="site-header">
+      <div class="site-brand">
+        <div class="brand-badge">MM</div>
+        <div>
+          <strong>MaxyMessenger</strong>
+          <p>Realtime communication platform</p>
+        </div>
+      </div>
+      <nav class="site-nav">
+        <a href="#features">Возможности</a>
+        <a href="#security">Безопасность</a>
+        <a href="#desktop">Desktop</a>
+        <button id="openMessengerBtn" class="primary-btn">Открыть Messenger</button>
+      </nav>
+    </header>
+
+    <main class="landing-main">
+      <section class="hero-section">
+        <div class="hero-copy">
+          <p class="eyebrow">Official product website</p>
+          <h1>Мессенджер для команд, личных чатов, голосовых и звонков</h1>
+          <p class="hero-text">MaxyMessenger объединяет сайт, десктопный запуск и Firebase-инфраструктуру в одном продукте. Быстрый чат, авторизация, голосовые сообщения и звонки работают в едином интерфейсе.</p>
+          <div class="hero-actions">
+            <button id="heroOpenMessengerBtn" class="primary-btn">Запустить мессенджер</button>
+            <a class="ghost-link" href="#features">Посмотреть возможности</a>
+          </div>
+          <div class="hero-metrics">
+            <div>
+              <strong>Realtime</strong>
+              <span>Firebase Database</span>
+            </div>
+            <div>
+              <strong>Auth</strong>
+              <span>Email + Password</span>
+            </div>
+            <div>
+              <strong>Calls</strong>
+              <span>WebRTC voice</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-preview">
+          <div class="preview-window">
+            <div class="preview-sidebar">
+              <div class="preview-chat active">
+                <strong>Общий чат</strong>
+                <span>System: Добро пожаловать</span>
+              </div>
+              <div class="preview-chat">
+                <strong>Продукт</strong>
+                <span>Новый релиз опубликован</span>
+              </div>
+              <div class="preview-chat">
+                <strong>Поддержка</strong>
+                <span>Клиент на связи</span>
+              </div>
+            </div>
+            <div class="preview-stage">
+              <div class="preview-header">
+                <div class="avatar">OC</div>
+                <div>
+                  <strong>Общий чат</strong>
+                  <p>Голосовые, звонки, сообщения</p>
+                </div>
+              </div>
+              <div class="preview-messages">
+                <div class="preview-bubble">Привет! Добро пожаловать в MaxyMessenger.</div>
+                <div class="preview-bubble self">Проверяю новый интерфейс и звонки.</div>
+                <div class="preview-bubble">Всё выглядит как взрослый мессенджер.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="info-section">
+        <div class="section-heading">
+          <p class="eyebrow">Возможности</p>
+          <h2>Всё, что нужно для нормального мессенджера</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>Настоящая авторизация</h3>
+            <p>Email/password через Firebase Auth без фальшивого входа по имени.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Realtime-чаты</h3>
+            <p>Сообщения и список чатов обновляются сразу у всех участников.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Голосовые сообщения</h3>
+            <p>Можно записывать и отправлять голосовые прямо из браузера.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Звонки</h3>
+            <p>Голосовые 1:1 звонки через WebRTC с сигналингом в Firebase.</p>
+          </article>
+          <article class="feature-card">
+            <h3>iPhone-ready</h3>
+            <p>Сайт можно добавить на домашний экран iPhone как web app с полноэкранным запуском.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Telegram-похожий UI</h3>
+            <p>Левая колонка чатов, верхняя панель диалога, пузырьки сообщений и быстрый composer.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="security" class="info-section split-section">
+        <div>
+          <p class="eyebrow">Безопасность</p>
+          <h2>Контроль доступа через Firebase</h2>
+          <p class="hero-text">Аутентификация, правила базы и разделение данных пользователей строятся на Firebase. Это лучше, чем открытая база без auth, и дает основу для нормального продакшен-развития.</p>
+        </div>
+        <div class="security-card">
+          <h3>Что включено</h3>
+          <ul>
+            <li>Firebase Auth</li>
+            <li>Realtime Database</li>
+            <li>Структура `users`, `chats`, `messages`, `calls`</li>
+            <li>Сигналинг звонков в базе</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="desktop" class="info-section split-section">
+        <div class="desktop-card">
+          <p class="eyebrow">Desktop</p>
+          <h2>Запуск на компьютере</h2>
+          <p>Сайт можно открывать как локальную desktop-версию через `start.bat`. Это удобно для ежедневной работы и тестов.</p>
+        </div>
+        <div class="desktop-card accent-card">
+          <h3>iPhone и App Store путь</h3>
+          <p>Сейчас проект подготовлен как web app для iPhone и как база для дальнейшей упаковки в `.ipa` через Capacitor и Xcode на macOS.</p>
+        </div>
+      </section>
+    </main>
+  </section>
+
+  <section id="authScreen" class="auth-screen hidden">
+    <div class="auth-card">
+      <div class="auth-brand">
+        <div class="brand-badge">MM</div>
+        <div>
+          <p class="eyebrow">Firebase Auth + Realtime Database</p>
+          <h1>Вход в MaxyMessenger</h1>
+          <p class="subtle">Авторизация для доступа к чатам, голосовым сообщениям и звонкам.</p>
+        </div>
+      </div>
+
+      <div class="auth-tabs">
+        <button id="loginTabBtn" class="tab-btn active">Вход</button>
+        <button id="registerTabBtn" class="tab-btn">Регистрация</button>
+      </div>
+
+      <form id="authForm" class="auth-form">
+        <label id="displayNameField" class="input-group hidden">
+          <span>Имя</span>
+          <input id="displayNameInput" type="text" maxlength="32" placeholder="Как вас показывать в чатах" />
+        </label>
+
+        <label class="input-group">
+          <span>Email</span>
+          <input id="emailInput" type="email" autocomplete="username" placeholder="name@example.com" required />
+        </label>
+
+        <label class="input-group">
+          <span>Пароль</span>
+          <input id="passwordInput" type="password" autocomplete="current-password" placeholder="Минимум 6 символов" required />
+        </label>
+
+        <button id="authSubmitBtn" class="primary-btn" type="submit">Войти</button>
+        <p id="authStatus" class="status-text">Введите email и пароль.</p>
+      </form>
+
+      <button id="backToSiteBtn" class="ghost-btn wide-btn" type="button">Вернуться на сайт</button>
+    </div>
+  </section>
+
+  <section id="appScreen" class="app-screen hidden">
+    <aside class="sidebar">
+      <header class="sidebar-header">
+        <div class="user-chip">
+          <div id="userAvatar" class="avatar large"></div>
+          <div>
+            <strong id="userNameLabel">Пользователь</strong>
+            <p id="userEmailLabel" class="subtle small"></p>
+          </div>
+        </div>
+        <div class="top-actions">
+          <button id="backToSiteFromAppBtn" class="ghost-btn">Сайт</button>
+          <button id="logoutBtn" class="ghost-btn">Выйти</button>
+        </div>
+      </header>
+
+      <section class="search-panel">
+        <input id="chatSearchInput" type="text" placeholder="Поиск по чатам" />
+      </section>
+
+      <section class="create-chat-panel">
+        <div class="create-chat-row">
+          <input id="newChatTitleInput" type="text" maxlength="48" placeholder="Новый чат или канал" />
+          <button id="createChatBtn" class="primary-btn compact">Создать</button>
+        </div>
+        <p class="subtle small">После регистрации вы сразу попадаете в общий чат. Можно создавать и свои комнаты.</p>
+      </section>
+
+      <section id="chatsList" class="chat-list"></section>
+    </aside>
+
+    <main class="chat-stage">
+      <header class="chat-header">
+        <div class="chat-header-main">
+          <div id="chatAvatar" class="avatar"></div>
+          <div>
+            <h2 id="chatTitle">Выберите чат</h2>
+            <p id="chatMeta" class="subtle small">После входа можно начать переписку.</p>
+          </div>
+        </div>
+        <div class="chat-actions">
+          <button id="startCallBtn" class="ghost-btn" disabled>Позвонить</button>
+          <button id="endCallBtn" class="ghost-btn hidden">Завершить</button>
+          <button id="refreshBtn" class="ghost-btn">Обновить</button>
+        </div>
+      </header>
+
+      <div id="callBanner" class="call-banner hidden">
+        <span id="callBannerText">Входящий звонок</span>
+        <div class="call-banner-actions">
+          <button id="acceptCallBtn" class="primary-btn compact">Принять</button>
+          <button id="rejectCallBtn" class="ghost-btn">Отклонить</button>
+        </div>
+      </div>
+
+      <section id="messagesPanel" class="messages-panel">
+        <div id="messagesList" class="messages-list"></div>
+      </section>
+
+      <footer class="composer">
+        <div class="composer-box">
+          <textarea id="messageInput" rows="1" placeholder="Напишите сообщение..."></textarea>
+          <div class="composer-actions">
+            <button id="recordVoiceBtn" class="ghost-btn">Голосовое</button>
+            <button id="sendMessageBtn" class="primary-btn">Отправить</button>
+          </div>
+        </div>
+        <p id="recordingStatus" class="subtle small">Голосовая запись не активна.</p>
+      </footer>
+    </main>
+  </section>
+
+  <audio id="remoteAudio" autoplay></audio>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
