@@ -16,13 +16,11 @@
       - name: Install dependencies
         script: |
           npm install --include=dev
-          npm install @capacitor/core@^6.1.2 @capacitor/cli@^6.1.2 @capacitor/android@^6.1.2 --save-dev
-          test -f node_modules/@capacitor/cli/package.json
-          test -f node_modules/@capacitor/android/package.json
+          npm install @capacitor/core@^6.1.2 @capacitor/cli@^6.1.2 @capacitor/android@^6.1.2 --save-dev --no-fund --no-audit
       - name: Ensure Capacitor Android project exists
         script: |
-          ./node_modules/.bin/cap add android || true
-          ./node_modules/.bin/cap sync android
+          npx @capacitor/cli add android || true
+          npx @capacitor/cli sync android
       - name: Set Android application id
         script: |
           BUILD_FILE="android/app/build.gradle"
@@ -56,13 +54,11 @@
       - name: Install dependencies
         script: |
           npm install --include=dev
-          npm install @capacitor/core@^6.1.2 @capacitor/cli@^6.1.2 @capacitor/android@^6.1.2 --save-dev
-          test -f node_modules/@capacitor/cli/package.json
-          test -f node_modules/@capacitor/android/package.json
+          npm install @capacitor/core@^6.1.2 @capacitor/cli@^6.1.2 @capacitor/android@^6.1.2 --save-dev --no-fund --no-audit
       - name: Ensure Capacitor Android project exists
         script: |
-          ./node_modules/.bin/cap add android || true
-          ./node_modules/.bin/cap sync android
+          npx @capacitor/cli add android || true
+          npx @capacitor/cli sync android
       - name: Set Android application id
         script: |
           BUILD_FILE="android/app/build.gradle"
